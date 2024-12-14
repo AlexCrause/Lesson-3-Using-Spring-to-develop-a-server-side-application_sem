@@ -31,12 +31,14 @@ public class TaskController {
     }
 
     @GetMapping("/filter/{age}") //localhost:8080/tasks/filter
-    public List<User> filterUsersByAge(@PathVariable int age) {
-        return service.filterUsersByAge(service.getRepository().getUsers(), age);
+    public List<User> filterUsersByAge(@PathVariable("age") int age) {
+        List<User> users = service.getRepository().getUsers();
+        return service.filterUsersByAge(users, age);
     }
 
     @GetMapping("/calculate") //localhost:8080/tasks/calculate
     public double calculateAverageAge() {
-        return service.calculateAverageAge(service.getRepository().getUsers());
+        List<User> users = service.getRepository().getUsers();
+        return service.calculateAverageAge(users);
     }
 }
